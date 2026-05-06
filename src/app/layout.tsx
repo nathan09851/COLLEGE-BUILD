@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Newsreader, Public_Sans } from "next/font/google";
+import { Newsreader, Public_Sans, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const newsreader = Newsreader({
   variable: "--font-serif",
@@ -8,10 +9,7 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
 });
 
-const publicSans = Public_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Xavier Modernist | Academic Excellence",
@@ -26,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${publicSans.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", newsreader.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         {children}
