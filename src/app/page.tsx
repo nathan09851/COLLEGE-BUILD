@@ -6,16 +6,16 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white border-b border-primary/10">
         <div className="container-custom flex justify-between items-center h-20">
-          <div className="text-xl font-serif font-semibold tracking-tight text-primary">
+          <Link href="/" className="text-xl font-serif font-semibold tracking-tight text-primary">
             Xavier <span className="italic">College</span>
-          </div>
+          </Link>
           <div className="hidden md:flex space-x-12">
-            <Link href="#" className="label-caps text-primary hover:opacity-70 transition-opacity underline-offset-8 decoration-2 underline">Academics</Link>
-            <Link href="#" className="label-caps text-primary hover:opacity-70 transition-opacity">Admissions</Link>
-            <Link href="#" className="label-caps text-primary hover:opacity-70 transition-opacity">Faculty</Link>
-            <Link href="#" className="label-caps text-primary hover:opacity-70 transition-opacity">Research</Link>
+            <Link href="#departments" className="label-caps text-primary hover:opacity-70 transition-opacity underline-offset-8 decoration-2 underline">Academics</Link>
+            <Link href="/apply" className="label-caps text-primary hover:opacity-70 transition-opacity">Admissions</Link>
+            <Link href="#news" className="label-caps text-primary hover:opacity-70 transition-opacity">News</Link>
+            <Link href="/contact" className="label-caps text-primary hover:opacity-70 transition-opacity">Contact</Link>
           </div>
-          <button className="btn-primary">Apply Now</button>
+          <Link href="/apply" className="btn-primary">Apply Now</Link>
         </div>
       </nav>
 
@@ -34,15 +34,15 @@ export default function Home() {
                 and a commitment to intellectual integrity in an ever-evolving world.
               </p>
               <div className="flex gap-6">
-                <button className="btn-primary">Explore Programs</button>
-                <button className="btn-secondary">View Faculty</button>
+                <Link href="#departments" className="btn-primary">Explore Programs</Link>
+                <Link href="/contact" className="btn-secondary">Contact Us</Link>
               </div>
             </div>
           </div>
         </section>
 
         {/* Departments Grid */}
-        <section className="section-gap">
+        <section id="departments" className="section-gap">
           <div className="container-custom">
             <div className="flex justify-between items-end mb-16">
               <div>
@@ -78,7 +78,7 @@ export default function Home() {
         </section>
 
         {/* Latest News - Ruled List */}
-        <section className="section-gap bg-surface">
+        <section id="news" className="section-gap bg-surface">
           <div className="container-custom">
             <div className="max-w-3xl">
               <span className="label-caps text-primary/60 mb-4 block">Institutional Updates</span>
@@ -142,10 +142,10 @@ export default function Home() {
             <div>
               <h4 className="label-caps text-white/40 mb-6">Navigation</h4>
               <ul className="space-y-4 font-sans text-white/80">
-                <li><Link href="#" className="hover:text-secondary">Course Catalog</Link></li>
-                <li><Link href="#" className="hover:text-secondary">Faculty Directory</Link></li>
-                <li><Link href="#" className="hover:text-secondary">Campus Map</Link></li>
-                <li><Link href="#" className="hover:text-secondary">Alumni</Link></li>
+                <li><Link href="#departments" className="hover:text-secondary">Academics</Link></li>
+                <li><Link href="/apply" className="hover:text-secondary">Apply Now</Link></li>
+                <li><Link href="#news" className="hover:text-secondary">News</Link></li>
+                <li><Link href="/contact" className="hover:text-secondary">Contact</Link></li>
               </ul>
             </div>
             
@@ -154,7 +154,7 @@ export default function Home() {
               <ul className="space-y-4 font-sans text-white/80">
                 <li>123 Academic Way<br />Cambridge, MA 02138</li>
                 <li>+1 (555) 012-3456</li>
-                <li>admissions@xavier.edu</li>
+                <li><Link href="/contact" className="hover:text-secondary">admissions@xavier.edu</Link></li>
               </ul>
             </div>
           </div>
