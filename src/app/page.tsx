@@ -198,7 +198,7 @@ export default function Home() {
                 <Badge variant="outline" className="mb-4 border-slate-200 text-slate-500 uppercase tracking-widest font-bold">
                   Leadership
                 </Badge>
-                <h2 className="headline-lg mb-8 text-slate-900">Formation for <br /><span className="italic text-secondary">Transformation</span></h2>
+                <h2 className="headline-lg mb-8 text-slate-900">Formation for <br /><span className="text-secondary">Transformation</span></h2>
                 <div className="prose prose-lg max-w-none text-slate-600 font-sans leading-relaxed">
                   <p className="mb-6">
                     Dear Students,

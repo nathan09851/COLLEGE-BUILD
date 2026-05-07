@@ -41,20 +41,19 @@ export default async function GalleryPage({ searchParams }: PageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 bg-slate-950 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(183,19,29,0.15),transparent_50%)]" />
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
+      <section className="relative py-24 bg-slate-50 border-b border-slate-100 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]" />
         
         <div className="container-custom relative">
           <div className="max-w-3xl">
-            <Badge variant="outline" className="mb-6 border-secondary text-secondary uppercase tracking-widest font-bold px-4 py-1">
+            <Badge variant="outline" className="mb-6 border-secondary/30 bg-secondary/5 text-secondary uppercase tracking-widest font-bold px-4 py-1">
               Visual Archive
             </Badge>
-            <h1 className="headline-xl mb-8 leading-[1.1]">
+            <h1 className="headline-xl mb-8 leading-[1.1] text-slate-900">
               The Xavier <br />
-              <span className="italic text-secondary">Chronicle.</span>
+              <span className="text-secondary">Chronicle.</span>
             </h1>
-            <p className="text-xl text-slate-300 font-sans leading-relaxed">
+            <p className="text-xl text-slate-600 font-sans leading-relaxed">
               A curated visual narrative of excellence, innovation, and vibrant 
               campus life at the heart of Xavier College.
             </p>
