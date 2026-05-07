@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 
-export default function LoginPage() {
+function LoginForm() {
   const [error, setError] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
@@ -125,10 +125,23 @@ export default function LoginPage() {
 
         <div className="text-center">
           <Link href="/" className="text-sm text-primary/60 hover:text-primary">
-            ← Back to home
+            &larr; Back to home
           </Link>
         </div>
       </div>
     </div>
   )
 }
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-surface flex items-center justify-center">
+        <p className="text-primary/60">Loading...</p>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
+  )
+}
+

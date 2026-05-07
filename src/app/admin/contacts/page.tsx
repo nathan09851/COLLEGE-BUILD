@@ -39,7 +39,7 @@ export default async function AdminContacts({
     query = query.eq('status', statusFilter)
   }
   
-  const { data: contacts, error } = await query
+  const { data: contacts } = await query
 
   return (
     <div className="min-h-screen bg-surface">

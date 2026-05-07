@@ -1,6 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import Link from 'next/link'
-import { format, isSameMonth, isToday, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from 'date-fns'
+import { format } from 'date-fns'
 import { Calendar, Clock, MapPin, GraduationCap, Trophy, PartyPopper, AlertCircle, Briefcase } from 'lucide-react'
 
 export default async function AcademicCalendarPage() {
@@ -37,21 +36,18 @@ export default async function AcademicCalendarPage() {
   }
 
   // Group events by month
-  const groupedEvents = events?.reduce((acc, event) => {
+  const groupedEvents = events?.reduce<Record<string, Array<(typeof events)[number]>>>((acc, event) => {
     const month = format(new Date(event.start_date), 'MMMM yyyy')
     if (!acc[month]) acc[month] = []
     acc[month].push(event)
     return acc
-  }, {} as Record<string, typeof events>)
+  }, {})
 
   return (
     <div className="min-h-screen bg-surface">
       {/* Header */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-white py-12 md:py-16">
         <div className="container-custom">
-          <Link href="/" className="text-xl font-serif font-semibold tracking-tight inline-block mb-8">
-            Xavier <span className="italic">College</span>
-          </Link>
           <div className="flex items-center gap-4 mb-4">
             <Calendar className="w-8 h-8" />
             <h1 className="headline-xl">Academic Calendar</h1>

@@ -3,24 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-primary/10">
-        <div className="container-custom flex justify-between items-center h-20">
-          <Link href="/" className="text-xl font-serif font-semibold tracking-tight text-primary">
-            Xavier <span className="italic">College</span>
-          </Link>
-          <div className="hidden lg:flex space-x-8">
-            <Link href="/departments" className="label-caps text-primary hover:opacity-70 transition-opacity">Academics</Link>
-            <Link href="/faculty" className="label-caps text-primary hover:opacity-70 transition-opacity">Faculty</Link>
-            <Link href="/notices" className="label-caps text-primary hover:opacity-70 transition-opacity">Notices</Link>
-            <Link href="/academic-calendar" className="label-caps text-primary hover:opacity-70 transition-opacity">Calendar</Link>
-            <Link href="/apply" className="label-caps text-primary hover:opacity-70 transition-opacity">Admissions</Link>
-            <Link href="/contact" className="label-caps text-primary hover:opacity-70 transition-opacity">Contact</Link>
-          </div>
-          <Link href="/apply" className="btn-primary">Apply Now</Link>
-        </div>
-      </nav>
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="section-gap bg-surface">
@@ -116,7 +98,7 @@ export default function Home() {
                   <div className="flex justify-between items-start">
                     <div>
                       <span className="label-caps text-secondary mb-2 block">April 15, 2026</span>
-                      <h3 className="text-3xl group-hover:italic transition-all">Dean's List Announced for Spring Semester 2026</h3>
+                      <h3 className="text-3xl group-hover:italic transition-all">Dean&apos;s List Announced for Spring Semester 2026</h3>
                     </div>
                     <span className="text-2xl text-primary/30 group-hover:text-primary transition-colors">&rarr;</span>
                   </div>
@@ -144,13 +126,13 @@ export default function Home() {
               </div>
               <div className="lg:col-span-2">
                 <span className="label-caps text-primary/60 mb-4 block">Leadership</span>
-                <h2 className="headline-lg mb-8">Principal's Message</h2>
+                <h2 className="headline-lg mb-8">Principal&apos;s Message</h2>
                 <div className="prose prose-lg max-w-none">
                   <p className="text-lg text-primary/80 leading-relaxed mb-6">
                     Dear Students,
                   </p>
                   <p className="text-primary/80 leading-relaxed mb-6">
-                    It is my privilege to welcome you to St. Xavier's College, a premier institution of higher learning committed to academic excellence and holistic development. Our college has been a beacon of knowledge, nurturing young minds and transforming them into responsible citizens who contribute meaningfully to society.
+                    It is my privilege to welcome you to St. Xavier&apos;s College, a premier institution of higher learning committed to academic excellence and holistic development. Our college has been a beacon of knowledge, nurturing young minds and transforming them into responsible citizens who contribute meaningfully to society.
                   </p>
                   <p className="text-primary/80 leading-relaxed mb-6">
                     At Xavier, we believe in the power of education to change lives. Our dedicated faculty, state-of-the-art infrastructure, and vibrant campus life create an environment where students can discover their potential and pursue their dreams.
@@ -208,7 +190,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="card-minimal">
                 <blockquote className="text-lg text-primary/80 leading-relaxed mb-6 italic">
-                  "My years at Xavier College were transformative. The faculty's dedication and the practical approach to learning prepared me exceptionally well for the tech industry."
+                  &ldquo;My years at Xavier College were transformative. The faculty&apos;s dedication and the practical approach to learning prepared me exceptionally well for the tech industry.&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -222,7 +204,7 @@ export default function Home() {
               </div>
               <div className="card-minimal">
                 <blockquote className="text-lg text-primary/80 leading-relaxed mb-6 italic">
-                  "The physics department at Xavier is world-class. The well-equipped laboratories and Dr. Kumar's guidance gave me a strong foundation for my career at ISRO."
+                  &ldquo;The physics department at Xavier is world-class. The well-equipped laboratories and Dr. Kumar&apos;s guidance gave me a strong foundation for my career at ISRO.&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -258,7 +240,7 @@ export default function Home() {
               <h4 className="label-caps text-white/40 mb-6">Quick Links</h4>
               <ul className="space-y-3 font-sans text-white/80">
                 <li><Link href="/notices" className="hover:text-secondary">Notices & Announcements</Link></li>
-                <li><Link href="/principal-message" className="hover:text-secondary">Principal's Message</Link></li>
+                <li><Link href="/principal-message" className="hover:text-secondary">Principal&apos;s Message</Link></li>
                 <li><Link href="/departments" className="hover:text-secondary">Academic Departments</Link></li>
                 <li><Link href="/faculty" className="hover:text-secondary">Faculty Directory</Link></li>
                 <li><Link href="/academic-calendar" className="hover:text-secondary">Academic Calendar</Link></li>

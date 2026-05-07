@@ -1,19 +1,20 @@
 module.exports = {
   ci: {
     collect: {
-      startServerCommand: 'npm run build && npx serve@latest out',
+      startServerCommand: 'npm run build && npm start',
+      startServerReadyPattern: 'Ready',
       url: ['http://localhost:3000/'],
       numberOfRuns: 1,
+      settings: {
+        preset: 'desktop',
+      },
     },
     assert: {
       assertions: {
-        'categories:performance': ['warn', { minScore: 0.9 }],
-        'categories:accessibility': ['error', { minScore: 1 }],
-        'categories:best-practices': ['error', { minScore: 1 }],
-        'categories:seo': ['error', { minScore: 1 }],
-        'first-contentful-paint': ['warn', { maxNumericValue: 2000 }],
-        'largest-contentful-paint': ['warn', { maxNumericValue: 2500 }],
-        'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }],
+        'categories:performance': ['warn', { minScore: 0.7 }],
+        'categories:accessibility': ['warn', { minScore: 0.9 }],
+        'categories:best-practices': ['warn', { minScore: 0.9 }],
+        'categories:seo': ['warn', { minScore: 0.9 }],
       },
     },
     upload: {

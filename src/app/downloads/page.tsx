@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { Download, FileText, Filter, BookOpen, GraduationCap, Clock, ClipboardList, Award } from 'lucide-react'
+import { Download, FileText, BookOpen, GraduationCap, Clock, ClipboardList, Award } from 'lucide-react'
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

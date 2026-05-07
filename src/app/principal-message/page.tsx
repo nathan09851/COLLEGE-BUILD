@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import Link from 'next/link'
 import { GraduationCap, Award, BookOpen } from 'lucide-react'
 
 export default async function PrincipalMessagePage() {
@@ -17,7 +16,7 @@ export default async function PrincipalMessagePage() {
       <div className="bg-primary text-white py-12 md:py-16">
         <div className="container-custom">
           <div className="max-w-3xl">
-            <h1 className="headline-xl mb-4">Principal's Message</h1>
+            <h1 className="headline-xl mb-4">Principal&apos;s Message</h1>
             <p className="text-lg text-white/70">
               Words of wisdom and guidance from our esteemed Principal.
             </p>
@@ -81,7 +80,7 @@ export default async function PrincipalMessagePage() {
           <div className="text-center py-16">
             <BookOpen className="w-16 h-16 text-primary/20 mx-auto mb-4" />
             <h3 className="text-xl font-serif mb-2">Message Coming Soon</h3>
-            <p className="text-primary/60">The Principal's message will be updated shortly.</p>
+            <p className="text-primary/60">The Principal&apos;s message will be updated shortly.</p>
           </div>
         )}
       </div>

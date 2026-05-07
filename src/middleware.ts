@@ -1,12 +1,12 @@
 import { updateSession } from '@/lib/supabase/middleware'
-import { NextResponse } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 
 // Rate limiting store (in-memory, reset on deploy)
-const rateLimitMap = new Map()
+const rateLimitMap = new Map<string, number>()
 const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
 const MAX_REQUESTS = 100 // requests per minute per IP
 
-function rateLimitCheck(ip) {
+function rateLimitCheck(ip: string): boolean {
   const now = Date.now()
   const windowStart = now - RATE_LIMIT_WINDOW
   
@@ -19,7 +19,7 @@ function rateLimitCheck(ip) {
   
   // Count requests in current window
   const requestCount = Array.from(rateLimitMap.entries()).filter(
-    ([key]) => key.startsWith(ip) && rateLimitMap.get(key) > windowStart
+    ([key]) => key.startsWith(ip) && (rateLimitMap.get(key) ?? 0) > windowStart
   ).length
   
   if (requestCount >= MAX_REQUESTS) {
@@ -30,7 +30,7 @@ function rateLimitCheck(ip) {
   return true
 }
 
-export async function middleware(request) {
+export async function middleware(request: NextRequest) {
   // Get client IP
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown'
   
@@ -72,6 +72,6 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }

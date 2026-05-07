@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import Link from 'next/link'
 import { format } from 'date-fns'
 import { Bell, Pin, Calendar, AlertCircle, GraduationCap, Users, FileText } from 'lucide-react'
 

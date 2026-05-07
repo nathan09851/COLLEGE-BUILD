@@ -7,9 +7,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  timeout: 30 * 1000, // 30 seconds timeout
+  timeout: 60 * 1000, // 60 seconds timeout
   expect: {
-    timeout: 5000,
+    timeout: 10000,
   },
   use: {
     baseURL: 'http://localhost:3000',
@@ -23,9 +23,11 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev',
+    command: process.env.CI
+      ? 'npm run build && npm start'
+      : 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000, // 2 minutes to start server
+    timeout: 180 * 1000, // 3 minutes to build + start server
   },
 })

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -37,7 +36,6 @@ export default function ApplyPage() {
   const [error, setError] = useState<string>('')
   const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
 
   const {
     register,
@@ -114,11 +112,8 @@ export default function ApplyPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Header */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-white py-12 md:py-16">
         <div className="container-custom">
-          <Link href="/" className="text-xl font-serif font-semibold tracking-tight inline-block mb-8">
-            Xavier <span className="italic">College</span>
-          </Link>
           <h1 className="headline-xl mb-4">Admissions Application</h1>
           <p className="text-lg text-white/70 max-w-2xl">
             Complete the form below to begin your journey toward academic excellence.

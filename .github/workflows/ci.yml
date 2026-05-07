@@ -24,11 +24,10 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
       - name: Run ESLint
         run: npm run lint
-        continue-on-error: true
 
   unit-tests:
     name: Unit Tests
@@ -43,13 +42,14 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
       - name: Run unit tests
-        run: npm test -- --coverage --watchAll=false || echo "Tests failed but continuing"
+        run: npm test -- --watchAll=false
       
       - name: Upload coverage
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: coverage-report
           path: coverage/
@@ -57,6 +57,8 @@ jobs:
   e2e-tests:
     name: E2E Tests
     runs-on: ubuntu-latest
+    env:
+      CI: true
     steps:
       - uses: actions/checkout@v4
       
@@ -67,13 +69,13 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
-      - name: Install Playwright
-        run: npx playwright install chromium
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
       
       - name: Run Playwright tests
-        run: npx playwright test --project=chromium || echo "E2E tests failed but continuing"
+        run: npx playwright test --project=chromium
       
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
@@ -95,25 +97,19 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
-      
-      - name: Build
-        run: npm run build
-      
-      - name: Install serve
-        run: npm install -g serve
+        run: npm ci
       
       - name: Run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.13.x
-          lhci autorun --config=lighthouserc.js || echo "Lighthouse failed but continuing"
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun --config=lighthouserc.js
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
   deploy:
     name: Deploy to Vercel
-    needs: [lint, unit-tests, e2e-tests, lighthouse]
-    if: github.ref == 'refs/heads/main' && always()
+    needs: [lint, unit-tests, e2e-tests]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -125,7 +121,7 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
       - name: Build
         run: npm run build

@@ -77,7 +77,7 @@ export default function ContactPage() {
           <div className="max-w-3xl">
             <h1 className="headline-xl mb-4">Contact Us</h1>
             <p className="text-lg text-white/70">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
             </p>
           </div>
         </div>

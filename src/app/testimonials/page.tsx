@@ -106,7 +106,7 @@ export default async function TestimonialsPage() {
 
                     {/* Quote */}
                     <blockquote className="text-lg text-primary/80 leading-relaxed mb-6 italic">
-                      "{testimonial.content}"
+                      &ldquo;{testimonial.content}&rdquo;
                     </blockquote>
 
                     {/* Author */}

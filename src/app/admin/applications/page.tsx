@@ -39,7 +39,7 @@ export default async function AdminApplications({
     query = query.eq('status', statusFilter)
   }
   
-  const { data: applications, error } = await query
+  const { data: applications } = await query
 
   return (
     <div className="min-h-screen bg-surface">

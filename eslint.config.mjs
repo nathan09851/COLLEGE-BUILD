@@ -12,7 +12,18 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Config files
+    "jest.config.js",
+    "jest.setup.js",
+    "lighthouserc.js",
+    "playwright.config.ts",
   ]),
+  {
+    rules: {
+      // Allow <img> elements since images come from Supabase dynamic URLs
+      "@next/next/no-img-element": "warn",
+    },
+  },
 ]);
 
 export default eslintConfig;
