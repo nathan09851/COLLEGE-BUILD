@@ -25,8 +25,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn("h-full", "antialiased", newsreader.variable, "font-sans", geist.variable)}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans" suppressHydrationWarning>
         {children}
       </body>
     </html>
