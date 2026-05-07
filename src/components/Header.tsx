@@ -3,7 +3,15 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu } from 'lucide-react'
+import { Button, buttonVariants } from '@/components/ui/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from '@/components/ui/sheet'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 const navLinks = [
   { href: '/departments', label: 'Academics' },
@@ -24,22 +32,22 @@ export default function Header() {
   if (isAuthPage) return null
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-primary/10" role="navigation" aria-label="Main navigation">
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border" role="navigation" aria-label="Main navigation">
       <div className="container-custom flex justify-between items-center h-20">
         <Link href="/" className="text-xl font-serif font-semibold tracking-tight text-primary">
           Xavier <span className="italic">College</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex space-x-8">
+        <div className="hidden lg:flex space-x-8 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`label-caps transition-opacity ${
+              className={`text-sm font-medium transition-colors hover:text-primary ${
                 pathname === link.href || pathname.startsWith(link.href + '/')
-                  ? 'text-secondary'
-                  : 'text-primary hover:opacity-70'
+                  ? 'text-primary'
+                  : 'text-muted-foreground'
               }`}
             >
               {link.label}
@@ -48,50 +56,42 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link href="/apply" className="hidden sm:inline-block btn-primary">
+          <Link href="/apply" className={`${buttonVariants()} hidden sm:inline-flex`}>
             Apply Now
           </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 text-primary hover:opacity-70 transition-opacity"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Menu */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger className={`${buttonVariants({ variant: 'ghost', size: 'icon' })} lg:hidden`} aria-label="Open menu">
+              <Menu className="h-6 w-6" />
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <VisuallyHidden>
+                <SheetTitle>Navigation Menu</SheetTitle>
+              </VisuallyHidden>
+              <div className="flex flex-col space-y-6 mt-6">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-lg font-medium transition-colors hover:text-primary ${
+                      pathname === link.href || pathname.startsWith(link.href + '/')
+                        ? 'text-primary'
+                        : 'text-muted-foreground'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link href="/apply" className={`${buttonVariants()} w-full mt-4`} onClick={() => setMobileMenuOpen(false)}>
+                  Apply Now
+                </Link>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-primary/10 bg-white animate-fade-in">
-          <div className="container-custom py-6 flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`label-caps py-2 transition-opacity ${
-                  pathname === link.href || pathname.startsWith(link.href + '/')
-                    ? 'text-secondary'
-                    : 'text-primary hover:opacity-70'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/apply"
-              className="btn-primary text-center sm:hidden"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Apply Now
-            </Link>
-          </div>
-        </div>
-      )}
     </nav>
   )
 }
