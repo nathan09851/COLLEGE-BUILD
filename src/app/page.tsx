@@ -12,27 +12,27 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-32">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(183,19,29,0.15),transparent_50%)]" />
+        <section className="relative overflow-hidden bg-slate-50 py-24 sm:py-32 border-b border-slate-100">
+          <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]" />
           <div className="container-custom relative">
-            <div className="max-w-4xl animate-fade-in-up">
-              <Badge variant="secondary" className="mb-6 px-4 py-1 text-xs font-bold uppercase tracking-widest bg-secondary text-white hover:bg-secondary/90 border-none">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
+              <Badge variant="outline" className="mb-6 px-4 py-1 text-xs font-bold uppercase tracking-widest text-secondary border-secondary/30 bg-secondary/5">
                 Established 1892
               </Badge>
-              <h1 className="headline-xl mb-8 text-white leading-[1.1]">
-                Academic Excellence through <br />
-                <span className="italic text-secondary">Modernist Clarity.</span>
+              <h1 className="headline-xl mb-8 text-slate-900 leading-[1.1]">
+                Formation for <br />
+                <span className="text-secondary">Transformation.</span>
               </h1>
-              <p className="text-xl text-slate-300 max-w-2xl mb-12 font-sans leading-relaxed">
-                Empowering the next generation of scholars with a rigorous curriculum 
-                and a commitment to intellectual integrity in an ever-evolving world.
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-12 font-sans leading-relaxed">
+                Empowering the next generation of scholars with a rigorous curriculum, 
+                holistic development, and a commitment to intellectual integrity.
               </p>
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap justify-center gap-6">
                 <Link 
                   href="#departments" 
                   className={cn(
                     buttonVariants({ size: "lg" }),
-                    "bg-secondary hover:bg-secondary/90 text-white px-8 h-14 text-base font-bold uppercase tracking-wider transition-transform hover:scale-105 active:scale-95"
+                    "bg-secondary hover:bg-secondary/90 text-white px-8 h-14 text-base font-bold uppercase tracking-wider transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-secondary/20"
                   )}
                 >
                   Explore Programs
@@ -41,7 +41,7 @@ export default function Home() {
                   href="/contact" 
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
-                    "border-white/20 text-white hover:bg-white/10 px-8 h-14 text-base font-bold uppercase tracking-wider backdrop-blur-sm"
+                    "border-slate-200 text-slate-700 hover:bg-slate-100 px-8 h-14 text-base font-bold uppercase tracking-wider bg-white"
                   )}
                 >
                   Contact Us
@@ -49,8 +49,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* Decorative element */}
-          <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-tl from-secondary/10 to-transparent blur-3xl -z-0" />
         </section>
 
         {/* Departments Grid */}
@@ -227,8 +225,7 @@ export default function Home() {
         </section>
 
         {/* Quick Links Grid */}
-        <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
+        <section className="py-24 bg-slate-50 relative overflow-hidden border-y border-slate-100">
           <div className="container-custom relative">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
@@ -237,13 +234,13 @@ export default function Home() {
                 { title: "Photo Gallery", category: "Visual Journey", desc: "Explore campus life and events", href: "/gallery", icon: <ImageIcon className="w-8 h-8" /> },
                 { title: "Downloads", category: "Resources", desc: "Forms, syllabus, and documents", href: "/downloads", icon: <Download className="w-8 h-8" /> }
               ].map((link, idx) => (
-                <Link key={idx} href={link.href} className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-secondary/50 transition-all duration-300">
-                  <Badge variant="secondary" className="mb-4 bg-secondary text-white border-none text-[10px] uppercase font-black">{link.category}</Badge>
-                  <div className="mb-4 text-white/40 group-hover:text-secondary transition-colors">
+                <Link key={idx} href={link.href} className="group p-8 rounded-2xl bg-white border border-slate-200 hover:border-secondary hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                  <Badge variant="secondary" className="mb-4 bg-secondary/10 text-secondary border-none text-[10px] uppercase font-black group-hover:bg-secondary group-hover:text-white transition-colors">{link.category}</Badge>
+                  <div className="mb-4 text-slate-400 group-hover:text-secondary transition-colors">
                     {link.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-white transition-colors">{link.title}</h3>
-                  <p className="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">{link.desc}</p>
+                  <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-secondary transition-colors">{link.title}</h3>
+                  <p className="text-slate-500 text-sm">{link.desc}</p>
                 </Link>
               ))}
             </div>
