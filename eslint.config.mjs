@@ -21,7 +21,7 @@ const eslintConfig = defineConfig([
   {
     rules: {
       // Allow <img> elements since images come from Supabase dynamic URLs
-      "@next/next/no-img-element": "warn",
+      "@next/next/no-img-element": "off",
     },
   },
 ]);
