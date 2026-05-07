@@ -56,18 +56,17 @@ export default async function FacultyPage({ searchParams }: PageProps) {
   return (
     <div className="min-h-screen bg-surface">
       {/* Header */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-white py-12 md:py-16">
         <div className="container-custom">
-          <Link href="/" className="text-xl font-serif font-semibold tracking-tight inline-block mb-8">
-            Xavier <span className="italic">College</span>
-          </Link>
-          <div className="flex items-center gap-4 mb-4">
-            <Users className="w-8 h-8" />
-            <h1 className="headline-xl">Faculty Directory</h1>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-4 mb-4">
+              <Users className="w-8 h-8" />
+              <h1 className="headline-xl">Faculty Directory</h1>
+            </div>
+            <p className="text-lg text-white/70">
+              Meet our distinguished faculty members who bring expertise and dedication to academic excellence.
+            </p>
           </div>
-          <p className="text-lg text-white/70 max-w-2xl">
-            Meet our distinguished faculty members who bring expertise and dedication to academic excellence.
-          </p>
         </div>
       </div>
 

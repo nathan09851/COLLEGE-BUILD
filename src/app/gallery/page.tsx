@@ -38,18 +38,17 @@ export default async function GalleryPage({ searchParams }: PageProps) {
   return (
     <div className="min-h-screen bg-surface">
       {/* Header */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-white py-12 md:py-16">
         <div className="container-custom">
-          <Link href="/" className="text-xl font-serif font-semibold tracking-tight inline-block mb-8">
-            Xavier <span className="italic">College</span>
-          </Link>
-          <div className="flex items-center gap-4 mb-4">
-            <Camera className="w-8 h-8" />
-            <h1 className="headline-xl">Photo Gallery</h1>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-4 mb-4">
+              <Camera className="w-8 h-8" />
+              <h1 className="headline-xl">Photo Gallery</h1>
+            </div>
+            <p className="text-lg text-white/70">
+              A visual journey through campus life, events, and memorable moments at Xavier College.
+            </p>
           </div>
-          <p className="text-lg text-white/70 max-w-2xl">
-            A visual journey through campus life, events, and memorable moments at Xavier College.
-          </p>
         </div>
       </div>
 
