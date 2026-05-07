@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowRight, BookOpen, Users, Bell, Calendar, Image as ImageIcon, Download, Quote, X, Globe, Camera } from "lucide-react";
+import { ArrowRight, BookOpen, Users, Bell, Calendar, Image as ImageIcon, Download, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Home() {

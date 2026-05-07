@@ -1,9 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import Image from 'next/image'
+
 import { notFound } from 'next/navigation'
-import { Building2, Users, Mail, Target, Eye, Award, ArrowLeft, ArrowRight, BookOpen, GraduationCap, Bell, Calendar, Download } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Building2, Users, Mail, Target, Eye, Award, ArrowLeft, ArrowRight, GraduationCap, Bell, Calendar, Download } from 'lucide-react'
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"

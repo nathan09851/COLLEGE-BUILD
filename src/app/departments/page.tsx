@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Building2, ArrowRight, Users, BookOpen } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+
 
 export default async function DepartmentsPage() {
   const supabase = await createClient()

@@ -1,11 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Users, Search, Mail, GraduationCap, Filter, ArrowRight } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { cn } from "@/lib/utils"
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -196,7 +194,7 @@ export default async function FacultyPage({ searchParams }: PageProps) {
               <Users className="w-16 h-16 text-slate-200 mx-auto mb-6" />
               <h3 className="text-2xl font-serif font-bold text-slate-900 mb-2">No Scholars Found</h3>
               <p className="text-slate-500 max-w-sm mx-auto">
-                We couldn't find any faculty members matching your current criteria. 
+                We couldn&apos;t find any faculty members matching your current criteria. 
                 Please try adjusting your filters or clearing them.
               </p>
               <Link href="/faculty" className="mt-8 inline-block text-secondary font-bold uppercase tracking-widest text-xs border-b-2 border-secondary pb-1">

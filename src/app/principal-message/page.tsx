@@ -1,9 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
 import { GraduationCap, Award, BookOpen, Quote, Sparkles } from 'lucide-react'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+
 
 export default async function PrincipalMessagePage() {
   const supabase = await createClient()

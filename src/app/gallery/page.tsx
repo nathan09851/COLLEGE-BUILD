@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Camera, Grid3X3, ImageIcon, Sparkles, LayoutGrid } from 'lucide-react'
+import { Camera, ImageIcon, Sparkles, LayoutGrid } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
