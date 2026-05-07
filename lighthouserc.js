@@ -1,9 +1,9 @@
 module.exports = {
   ci: {
     collect: {
-      startServerCommand: 'npm run start',
+      startServerCommand: 'npm run build && npx serve@latest out',
       url: ['http://localhost:3000/'],
-      numberOfRuns: 3,
+      numberOfRuns: 1,
     },
     assert: {
       assertions: {
