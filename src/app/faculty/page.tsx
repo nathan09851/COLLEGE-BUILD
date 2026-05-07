@@ -1,6 +1,11 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { Users, Search, Mail, GraduationCap, Filter } from 'lucide-react'
+import Image from 'next/image'
+import { Users, Search, Mail, GraduationCap, Filter, ArrowRight } from 'lucide-react'
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { cn } from "@/lib/utils"
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -14,14 +19,12 @@ export default async function FacultyPage({ searchParams }: PageProps) {
   const departmentFilter = typeof params.department === 'string' ? params.department : ''
   const designationFilter = typeof params.designation === 'string' ? params.designation : ''
   
-  // Fetch all departments for filter
   const { data: departments } = await supabase
     .from('departments')
     .select('name')
     .eq('is_active', true)
     .order('name')
 
-  // Fetch all designations for filter
   const { data: designations } = await supabase
     .from('faculty')
     .select('designation')
@@ -31,7 +34,6 @@ export default async function FacultyPage({ searchParams }: PageProps) {
     ? [...new Set(designations.map(d => d.designation))]
     : []
   
-  // Build query
   let query = supabase
     .from('faculty')
     .select('*')
@@ -54,148 +56,156 @@ export default async function FacultyPage({ searchParams }: PageProps) {
   const { data: faculty } = await query
 
   return (
-    <div className="min-h-screen bg-surface">
-      {/* Header */}
-      <div className="bg-primary text-white py-12 md:py-16">
-        <div className="container-custom">
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative py-24 bg-slate-950 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(183,19,29,0.15),transparent_50%)]" />
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
+        
+        <div className="container-custom relative">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-4">
-              <Users className="w-8 h-8" />
-              <h1 className="headline-xl">Faculty Directory</h1>
-            </div>
-            <p className="text-lg text-white/70">
-              Meet our distinguished faculty members who bring expertise and dedication to academic excellence.
+            <Badge variant="outline" className="mb-6 border-secondary text-secondary uppercase tracking-widest font-bold px-4 py-1">
+              Faculty
+            </Badge>
+            <h1 className="headline-xl mb-8 leading-[1.1]">
+              Distinguished <br />
+              <span className="italic text-secondary">Academic Leadership.</span>
+            </h1>
+            <p className="text-xl text-slate-300 font-sans leading-relaxed">
+              Our faculty members are scholars, researchers, and dedicated mentors 
+              shaping the future of academic excellence at Xavier College.
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Filters */}
-      <div className="bg-white border-b border-primary/10">
-        <div className="container-custom py-6">
-          <form className="flex flex-col md:flex-row gap-4">
-            {/* Search */}
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary/40" />
-              <input
-                type="text"
-                name="search"
-                placeholder="Search by name or specialization..."
-                defaultValue={search}
-                className="w-full pl-10 pr-4 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-            </div>
+      {/* Search & Filters */}
+      <section className="relative -mt-12 z-10">
+        <div className="container-custom">
+          <div className="bg-white p-6 rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100">
+            <form className="grid grid-cols-1 md:grid-cols-12 gap-4">
+              <div className="md:col-span-5 relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Search by name or specialization..."
+                  defaultValue={search}
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-secondary/20 font-sans text-slate-900"
+                />
+              </div>
 
-            {/* Department Filter */}
-            <div className="relative">
-              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
-              <select
-                name="department"
-                defaultValue={departmentFilter}
-                className="pl-10 pr-8 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white"
-              >
-                <option value="">All Departments</option>
-                {departments?.map((dept) => (
-                  <option key={dept.name} value={dept.name}>{dept.name}</option>
-                ))}
-              </select>
-            </div>
+              <div className="md:col-span-3 relative">
+                <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <select
+                  name="department"
+                  defaultValue={departmentFilter}
+                  className="w-full pl-12 pr-8 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-secondary/20 font-sans text-slate-900 appearance-none"
+                >
+                  <option value="">All Departments</option>
+                  {departments?.map((dept) => (
+                    <option key={dept.name} value={dept.name}>{dept.name}</option>
+                  ))}
+                </select>
+              </div>
 
-            {/* Designation Filter */}
-            <div className="relative">
-              <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
-              <select
-                name="designation"
-                defaultValue={designationFilter}
-                className="pl-10 pr-8 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white"
-              >
-                <option value="">All Designations</option>
-                {uniqueDesignations.map((desig) => (
-                  <option key={desig} value={desig}>{desig}</option>
-                ))}
-              </select>
-            </div>
+              <div className="md:col-span-2 relative">
+                <GraduationCap className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <select
+                  name="designation"
+                  defaultValue={designationFilter}
+                  className="w-full pl-12 pr-8 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-secondary/20 font-sans text-slate-900 appearance-none"
+                >
+                  <option value="">All Ranks</option>
+                  {uniqueDesignations.map((desig) => (
+                    <option key={desig} value={desig}>{desig}</option>
+                  ))}
+                </select>
+              </div>
 
-            <button type="submit" className="btn-primary">
-              Filter
-            </button>
-
-            {(search || departmentFilter || designationFilter) && (
-              <Link href="/faculty" className="btn-secondary">
-                Clear
-              </Link>
-            )}
-          </form>
+              <div className="md:col-span-2 flex gap-2">
+                <button type="submit" className="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold uppercase tracking-widest text-[10px] rounded-2xl transition-all">
+                  Apply
+                </button>
+                {(search || departmentFilter || designationFilter) && (
+                  <Link href="/faculty" className="w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-2xl transition-all text-slate-600">
+                    <span className="sr-only">Clear filters</span>
+                    <Filter className="w-4 h-4 rotate-180" />
+                  </Link>
+                )}
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Faculty Grid */}
-      <div className="container-custom py-16">
-        {faculty && faculty.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {faculty.map((member) => (
-              <div key={member.id} className="card-minimal">
-                <div className="flex flex-col items-center text-center">
-                  {/* Photo */}
-                  <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    {member.photo_url ? (
-                      <img 
-                        src={member.photo_url} 
-                        alt={`${member.first_name} ${member.last_name}`}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    ) : (
-                      <Users className="w-12 h-12 text-primary/40" />
-                    )}
-                  </div>
+      <section className="py-24 bg-white">
+        <div className="container-custom">
+          {faculty && faculty.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {faculty.map((member) => (
+                <Card key={member.id} className="group overflow-hidden border-none bg-slate-50 hover:bg-white hover:shadow-2xl hover:shadow-slate-200 transition-all duration-500 rounded-3xl">
+                  <CardContent className="p-10">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative mb-8">
+                        <div className="absolute inset-0 bg-secondary/10 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500" />
+                        <Avatar className="w-32 h-32 border-4 border-white shadow-xl">
+                          {member.photo_url ? (
+                            <AvatarImage src={member.photo_url} alt={`${member.first_name} ${member.last_name}`} className="object-cover" />
+                          ) : (
+                            <AvatarFallback className="bg-slate-200 text-2xl font-bold text-slate-400">
+                              {member.first_name[0]}{member.last_name[0]}
+                            </AvatarFallback>
+                          )}
+                        </Avatar>
+                      </div>
 
-                  {/* Info */}
-                  <h3 className="text-xl font-serif mb-1">
-                    {member.first_name} {member.last_name}
-                  </h3>
-                  <p className="text-secondary text-sm mb-2">{member.designation}</p>
-                  <p className="text-primary/60 text-sm mb-4">{member.department}</p>
+                      <Badge variant="outline" className="mb-4 border-slate-200 text-slate-500 text-[10px] uppercase font-black tracking-widest px-3">
+                        {member.department}
+                      </Badge>
+                      
+                      <h3 className="text-2xl font-serif font-bold text-slate-900 mb-2 group-hover:text-secondary transition-colors leading-tight">
+                        {member.first_name} {member.last_name}
+                      </h3>
+                      <p className="text-secondary font-serif italic text-base mb-6">{member.designation}</p>
 
-                  {/* Specialization */}
-                  {member.specialization && (
-                    <p className="text-sm text-primary/70 mb-4 line-clamp-2">
-                      {member.specialization}
-                    </p>
-                  )}
+                      <div className="w-12 h-px bg-slate-200 mb-6 group-hover:w-full transition-all duration-500" />
 
-                  {/* Education */}
-                  {member.education && (
-                    <p className="text-xs text-primary/50 mb-4">
-                      {member.education}
-                    </p>
-                  )}
+                      {member.specialization && (
+                        <p className="text-sm text-slate-600 font-sans leading-relaxed mb-6 line-clamp-3">
+                          {member.specialization}
+                        </p>
+                      )}
 
-                  {/* Contact */}
-                  {member.email && (
-                    <a 
-                      href={`mailto:${member.email}`}
-                      className="inline-flex items-center gap-2 text-sm text-secondary hover:underline"
-                    >
-                      <Mail className="w-4 h-4" />
-                      Contact
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <Users className="w-16 h-16 text-primary/20 mx-auto mb-4" />
-            <h3 className="text-xl font-serif mb-2">No Faculty Found</h3>
-            <p className="text-primary/60">
-              {search || departmentFilter || designationFilter 
-                ? 'Try adjusting your search criteria.' 
-                : 'Faculty information will be updated soon.'}
-            </p>
-          </div>
-        )}
-      </div>
+                      {member.email && (
+                        <a 
+                          href={`mailto:${member.email}`}
+                          className="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-900 transition-all hover:gap-3"
+                        >
+                          <Mail className="w-4 h-4" /> Send Message <ArrowRight className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-24 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
+              <Users className="w-16 h-16 text-slate-200 mx-auto mb-6" />
+              <h3 className="text-2xl font-serif font-bold text-slate-900 mb-2">No Scholars Found</h3>
+              <p className="text-slate-500 max-w-sm mx-auto">
+                We couldn't find any faculty members matching your current criteria. 
+                Please try adjusting your filters or clearing them.
+              </p>
+              <Link href="/faculty" className="mt-8 inline-block text-secondary font-bold uppercase tracking-widest text-xs border-b-2 border-secondary pb-1">
+                View All Faculty
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   )
 }

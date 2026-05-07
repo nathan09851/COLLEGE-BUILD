@@ -3,6 +3,7 @@ import { Newsreader, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const newsreader = Newsreader({
   variable: "--font-serif",
@@ -41,6 +42,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
